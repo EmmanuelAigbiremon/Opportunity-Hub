@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpportunityHub Africa - Find Jobs & Relocate Abroad</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669;
+            --primary-dark: #047857;
+            --secondary: #0ea5e9;
+            --accent: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-light: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --success: #10b981;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .navbar {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--bg-light);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--success);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--success); }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Hero */
+        .hero {
+            margin-top: 80px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.1) 0%, transparent 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .search-box {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 0.5rem;
+            border: 2px solid var(--bg-light);
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 1rem 1.5rem;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-btn {
+            background: var(--success);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            padding: 0 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--bg-light);
+            color: var(--text-secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--success);
+            color: white;
+            border-color: var(--success);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--success);
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-title i {
+            color: var(--success);
+        }
+
+        /* Opportunity Cards */
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .opp-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--bg-light);
+            transition: all 0.3s;
+        }
+
+        .opp-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--success);
+            box-shadow: 0 20px 40px rgba(5, 150, 105, 0.2);
+        }
+
+        .card-header {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .job-type {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .job-type.remote { background: rgba(16, 185, 129, 0.2); color: #34d399; }
+        .job-type.relocation { background: rgba(14, 165, 233, 0.2); color: #38bdf8; }
+        .job-type.urgent { background: rgba(239, 68, 68, 0.2); color: #f87171; }
+        .job-type.visa { background: rgba(245, 158, 11, 0.2); color: #fbbf24; }
+
+        .save-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-light);
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .save-btn:hover, .save-btn.saved {
+            background: var(--danger);
+            color: white;
+        }
+
+        .card-body {
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .job-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .company {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .job-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: var(--bg-light);
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        .salary {
+            color: var(--success);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .description {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .card-footer {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .apply-btn {
+            flex: 1;
+            padding: 1rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .apply-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.02);
+        }
+
+        .share-btn {
+            padding: 1rem;
+            background: var(--bg-light);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, rgba(5, 150, 105, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
+            border: 2px solid var(--success);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .featured-content h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-content p {
+            color: var(--text-secondary);
+        }
+
+        .featured-btn {
+            padding: 1rem 2rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        /* Categories */
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .category-card {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid var(--bg-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .category-card:hover {
+            border-color: var(--success);
+            transform: translateY(-3px);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--bg-light);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.75rem;
+        }
+
+        .category-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--bg-card);
+            border-radius: 24px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--bg-light);
+        }
+
+        .modal-header {
+            padding: 2rem;
+            background: var(--success);
+            color: white;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background: rgba(255,255,255,0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: var(--bg-light);
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .detail-icon {
+            width: 45px;
+            height: 45px;
+            background: var(--success);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .requirements-list {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .requirements-list li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .requirements-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: 700;
+        }
+
+        .apply-modal-btn {
+            width: 100%;
+            padding: 1.25rem;
+            background: var(--success);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            transition: all 0.3s;
+            z-index: 999;
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .opportunities-grid { grid-template-columns: 1fr; }
+            .categories { grid-template-columns: repeat(2, 1fr); }
+            .stats { gap: 2rem; }
+            .nav-links { display: none; }
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-briefcase"></i>
+                <span>OpportunityHub Africa</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#jobs">Jobs</a></li>
+                <li><a href="#relocation">Relocate</a></li>
+                <li><a href="#scholarships">Scholarships</a></li>
+                <li><a href="#visa">Visa Help</a></li>
+            </ul>
+            <a href="https://wa.me/2340000000000" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> Get Help
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Real Jobs for Real People</h1>
+        <p>Find remote jobs, relocation opportunities, and visa programs that work for Nigerians and Africans. No coding required!</p>
+        
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="Search: Virtual Assistant, Customer Care, Data Entry..." id="searchInput">
+            <button class="search-btn" onclick="searchJobs()">
+                <i class="fas fa-search"></i> Search
+            </button>
+        </div>
+
+        <div class="filters">
+            <button class="filter-btn active" onclick="filterJobs('all')">All Jobs</button>
+            <button class="filter-btn" onclick="filterJobs('remote')">Remote Work</button>
+            <button class="filter-btn" onclick="filterJobs('relocation')">Relocate Abroad</button>
+            <button class="filter-btn" onclick="filterJobs('customer-service')">Customer Service</button>
+            <button class="filter-btn" onclick="filterJobs('admin')">Admin/Office</button>
+            <button class="filter-btn" onclick="filterJobs('entry')">No Experience</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat">
+                <div class="stat-number">2,450</div>
+                <div class="stat-label">Active Jobs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">156</div>
+                <div class="stat-label">Relocation Programs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">89</div>
+                <div class="stat-label">Visa Sponsors</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">12k+</div>
+                <div class="stat-label">People Helped</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        
+        <!-- Featured -->
+        <div class="featured-banner">
+            <div class="featured-content">
+                <h2><i class="fas fa-fire"></i> HOT: Canada Farm Worker Visa</h2>
+                <p>No degree needed! Free accommodation + $15/hour. Open to all Africans.</p>
+            </div>
+            <button class="featured-btn" onclick="showDetails(0)">Apply Now</button>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories">
+            <div class="category-card" onclick="filterJobs('remote')">
+                <div class="category-icon">💻</div>
+                <div class="category-title">Remote Jobs</div>
+                <div class="category-count">890 jobs</div>
+            </div>
+            <div class="category-card" onclick="filterJobs('relocation')">
+                <div class="category-icon">✈️</div>
+                <div class="category-title">Relocate</div>
+                <div class="category-count">156 programs</div>
+            </div>
+            <div class="category-card" onclick="filterJobs('customer-service')">
+                <div class="category-icon">📞</div>
+                <div class="category-title">Call Center</div>
+                <div class="category-count">423 jobs</div>
+            </div>
+            <div class="category-card" onclick="filterJobs('entry')">
+                <div class="category-icon">🎯</div>
+                <div class="category-title">No Experience</div>
+                <div class="category-count">567 jobs</div>
+            </div>
+        </div>
+
+        <!-- Jobs Section -->
+        <h2 class="section-title">
+            <i class="fas fa-briefcase"></i>
+            Latest Opportunities
+        </h2>
+
+        <div class="opportunities-grid" id="jobsGrid">
+            <!-- Jobs injected by JS -->
+        </div>
+    </div>
+
+    <!-- Detail Modal -->
+    <div class="modal" id="detailModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-modal" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                <span style="opacity: 0.9; font-size: 0.9rem; text-transform: uppercase;" id="modalType">Remote Job</span>
+                <h2 style="margin-top: 0.5rem;" id="modalTitle">Virtual Assistant</h2>
+                <p style="opacity: 0.9;" id="modalCompany">Global Company</p>
+            </div>
+            <div class="modal-body">
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fas fa-money-bill-wave"></i></div>
+                    <div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Salary</div>
+                        <div style="font-weight: 700;" id="modalSalary">$500 - $800/month</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Location</div>
+                        <div style="font-weight: 700;" id="modalLocation">Remote (Work from Home)</div>
+                    </div>
+                </div>
+                <div class="detail-row">
+                    <div class="detail-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <div style="color: var(--text-secondary); font-size: 0.9rem;">Experience</div>
+                        <div style="font-weight: 700;" id="modalExp">No experience required</div>
+                    </div>
+                </div>
+                
+                <h3 style="margin: 1.5rem 0 1rem;">About This Job</h3>
+                <p style="color: var(--text-secondary); line-height: 1.8;" id="modalDesc">
+                    Perfect for beginners. Work from home with flexible hours.
+                </p>
+
+                <h3 style="margin: 1.5rem 0 1rem;">Requirements</h3>
+                <ul class="requirements-list" id="modalReqs">
+                    <li>Good English communication</li>
+                    <li>Reliable internet connection</li>
+                    <li>Smartphone or computer</li>
+                </ul>
+
+                <div style="background: rgba(5, 150, 105, 0.1); padding: 1rem; border-radius: 12px; margin: 1rem 0; border-left: 4px solid var(--success);">
+                    <strong style="color: var(--success);"><i class="fas fa-info-circle"></i> Good to Know:</strong>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem; font-size: 0.9rem;" id="modalNote">
+                        Many Nigerians already work here. Company pays directly to your bank account.
+                    </p>
+                </div>
+
+                <button class="apply-modal-btn" onclick="applyNow()">
+                    Apply Now <i class="fas fa-external-link-alt"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Float -->
+    <a href="https://wa.me/2340000000000" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">Application started!</div>
+
+    <script>
+        // Realistic Jobs for Africans
+        const jobs = [
+            {
+                id: 1,
+                type: 'remote',
+                category: 'customer-service',
+                title: 'Virtual Assistant (VA)',
+                company: 'US Small Business Hub',
+                location: 'Remote (Home-based)',
+                salary: '$400 - $700/month',
+                exp: 'No experience needed',
+                tags: ['Remote', 'Full-time', 'Training Provided'],
+                description: 'Help US business owners with email management, scheduling, and data entry. Perfect for graduates and stay-at-home parents.',
+                requirements: [
+                    'Good written English',
+                    'Basic computer skills',
+                    'Reliable internet (3G/4G okay)',
+                    'Available 9am-5pm EST'
+                ],
+                note: 'Company provides 2-week free training. Many Nigerians currently working here.',
+                urgent: false
+            },
+            {
+                id: 2,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'Canada Farm Worker (Visa Sponsored)',
+                company: 'Maple Leaf Farms',
+                location: 'Ontario, Canada',
+                salary: '$15/hour + Free Housing',
+                exp: 'No experience needed',
+                tags: ['Visa Sponsored', 'Free Accommodation', '2-Year Contract'],
+                description: 'Work on Canadian farms harvesting vegetables and fruits. Free accommodation and meals provided. Path to permanent residency after 1 year.',
+                requirements: [
+                    'Age 21-45',
+                    'Physically fit',
+                    'No criminal record',
+                    'Valid passport'
+                ],
+                note: 'Flight ticket provided after 3 months. Family can join after 6 months.',
+                urgent: true
+            },
+            {
+                id: 3,
+                type: 'remote',
+                category: 'customer-service',
+                title: 'Customer Care Representative',
+                company: 'Teleperformance',
+                location: 'Remote (Lagos, Abuja, PH allowed)',
+                salary: '₦80,000 - ₦120,000/month',
+                exp: '0-1 year experience',
+                tags: ['Work from Home', 'Paid Training', 'Health Insurance'],
+                description: 'Handle customer calls and emails for UK telecom company. Work from home option available for Lagos residents.',
+                requirements: [
+                    'Fluent English',
+                    'SSCE/OND minimum',
+                    'Quiet workspace at home',
+                    'Headset and computer'
+                ],
+                note: 'Company provides free headset and monthly data allowance.',
+                urgent: false
+            },
+            {
+                id: 4,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'UK Caregiver Visa Program',
+                company: 'NHS England',
+                location: 'United Kingdom',
+                salary: '£10-£12/hour (£1,600/month)',
+                exp: 'Training provided',
+                tags: ['Visa Sponsored', 'NHS Job', 'Bring Family'],
+                description: 'Care for elderly patients in UK care homes. Full visa sponsorship for you and your dependents. Permanent residency in 5 years.',
+                requirements: [
+                    'Care certificate (can get online)',
+                    'English test (IELTS 4.0)',
+                    'Clean criminal record',
+                    'Compassionate personality'
+                ],
+                note: 'Over 500 Nigerians placed last year. Application fee: £0 (company pays).',
+                urgent: true
+            },
+            {
+                id: 5,
+                type: 'remote',
+                category: 'admin',
+                title: 'Data Entry Clerk',
+                company: 'DataFlow Inc',
+                location: 'Remote (Anywhere in Nigeria)',
+                salary: '$300 - $500/month',
+                exp: 'No experience',
+                tags: ['Flexible Hours', 'Weekly Pay', 'Start Immediately'],
+                description: 'Enter data into spreadsheets and databases. Flexible hours - work when you want. Perfect for students and side hustle.',
+                requirements: [
+                    'Fast typing speed (30+ WPM)',
+                    'Attention to detail',
+                    'Microsoft Excel basics',
+                    'Smartphone or laptop'
+                ],
+                note: 'Payment every Friday via Payoneer or direct bank transfer.',
+                urgent: false
+            },
+            {
+                id: 6,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'Dubai Hotel Staff (Visa Ready)',
+                company: 'Jumeirah Hotels',
+                location: 'Dubai, UAE',
+                salary: '$400 - $600 + Tips',
+                exp: 'Hospitality preferred',
+                tags: ['Visa Ready', 'Free Food', 'Shared Accommodation'],
+                description: 'Work in luxury hotels as housekeeping, waiter, or kitchen staff. Visa processed in 2 weeks. Flight ticket provided.',
+                requirements: [
+                    'Age 21-35',
+                    'Presentable appearance',
+                    'Basic English',
+                    'Willing to work shifts'
+                ],
+                note: 'Service charge (tips) can double your salary. Many Nigerians in Dubai hotels.',
+                urgent: false
+            },
+            {
+                id: 7,
+                type: 'remote',
+                category: 'customer-service',
+                title: 'Social Media Manager',
+                company: 'E-commerce Brands',
+                location: 'Remote',
+                salary: '$500 - $1,000/month',
+                exp: 'Beginner friendly',
+                tags: ['Creative', 'Flexible', 'Growth Potential'],
+                description: 'Manage Instagram and Facebook accounts for small businesses. Create content, reply to comments, grow followers.',
+                requirements: [
+                    'Active social media user',
+                    'Creative mindset',
+                    'Basic Canva skills',
+                    'Good writing skills'
+                ],
+                note: 'Free Canva Pro and training provided. Can manage multiple accounts for more income.',
+                urgent: false
+            },
+            {
+                id: 8,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'Germany Factory Worker',
+                company: 'BMW Supplier',
+                location: 'Munich, Germany',
+                salary: '€1,200/month + Overtime',
+                exp: 'No experience',
+                tags: ['EU Visa', 'Free German Classes', 'Permanent Contract'],
+                description: 'Assembly line work in car parts factory. Company teaches you German for free. Bring family after 1 year.',
+                requirements: [
+                    'Age 20-40',
+                    'High school certificate',
+                    'Willing to learn German',
+                    'Hardworking'
+                ],
+                note: 'German government program specifically recruiting Africans. Low application cost.',
+                urgent: true
+            },
+            {
+                id: 9,
+                type: 'remote',
+                category: 'admin',
+                title: 'Online English Tutor',
+                company: 'iTutorGroup',
+                location: 'Remote (Teach Chinese students)',
+                salary: '$10-15/hour ($800-1200/month)',
+                exp: 'Teaching not required',
+                tags: ['Set Your Hours', 'Weekly Pay', 'High Demand'],
+                description: 'Teach English online to Chinese children. Peak hours are early morning Nigeria time (5am-9am).',
+                requirements: [
+                    'Clear English accent',
+                    'University degree (any field)',
+                    'Laptop with camera',
+                    'Energetic personality'
+                ],
+                note: 'Bookings fill up fast. Top tutors earn $2,000/month working 4 hours daily.',
+                urgent: false
+            },
+            {
+                id: 10,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'Australia Fruit Picker Visa',
+                company: 'Agri Labour Australia',
+                location: 'Sydney/Melbourne',
+                salary: '$25/hour ($4,000/month)',
+                exp: 'No experience',
+                tags: ['Working Holiday Visa', 'Outdoor Work', 'Travel Opportunity'],
+                description: 'Pick fruits on Australian farms. Work 3 months, travel 1 month. Extend visa for second year.',
+                requirements: [
+                    'Age 18-30',
+                    'Physically fit',
+                    'Like outdoor work',
+                    'Valid passport'
+                ],
+                note: 'Accommodation provided in farm camps. Many Nigerians save $10k+ in 6 months.',
+                urgent: false
+            },
+            {
+                id: 11,
+                type: 'remote',
+                category: 'entry',
+                title: 'Transcriptionist',
+                company: 'Rev.com / Scribie',
+                location: 'Remote',
+                salary: '$200-600/month (flexible)',
+                exp: 'No experience',
+                tags: ['Work Anytime', 'Weekly Pay', 'Start Today'],
+                description: 'Listen to audio files and type what you hear. Work as much or as little as you want. Perfect for night owls.',
+                requirements: [
+                    'Good listening skills',
+                    'Fast typing',
+                    'Headphones',
+                    'Pass short test'
+                ],
+                note: 'Start earning within 24 hours of passing the test. Payment every Monday.',
+                urgent: false
+            },
+            {
+                id: 12,
+                type: 'relocation',
+                category: 'relocation',
+                title: 'Poland Warehouse Worker',
+                company: 'Amazon EU',
+                location: 'Warsaw, Poland',
+                salary: '€800/month + Free Housing',
+                exp: 'No experience',
+                tags: ['Schengen Visa', 'Free Accommodation', 'Overtime Pay'],
+                description: 'Pack and sort packages in Amazon warehouse. Free shared apartment. Work 4 days, rest 3 days.',
+                requirements: [
+                    'Age 20-45',
+                    'Basic English',
+                    'Can lift 15kg',
+                    'No visa overstay history'
+                ],
+                note: 'Schengen visa allows travel to 26 European countries on days off.',
+                urgent: false
+            }
+        ];
+
+        let currentFilter = 'all';
+        let savedJobs = new Set();
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            renderJobs();
+        });
+
+        function renderJobs() {
+            const grid = document.getElementById('jobsGrid');
+            grid.innerHTML = '';
+
+            let filtered = jobs;
+            
+            if (currentFilter !== 'all') {
+                filtered = jobs.filter(job => 
+                    job.type === currentFilter || 
+                    job.category === currentFilter
+                );
+            }
+
+            filtered.forEach(job => {
+                const card = createJobCard(job);
+                grid.appendChild(card);
+            });
+        }
+
+        function createJobCard(job) {
+            const div = document.createElement('div');
+            div.className = 'opp-card';
+            
+            const isSaved = savedJobs.has(job.id);
+            const typeClass = job.type === 'remote' ? 'remote' : 
+                             job.type === 'relocation' ? 'relocation' : 
+                             job.urgent ? 'urgent' : 'visa';
+
+            div.innerHTML = `
+                <div class="card-header">
+                    <div>
+                        <span class="job-type ${typeClass}">${job.type === 'remote' ? 'Remote Job' : 'Visa Sponsored'}</span>
+                        ${job.urgent ? '<span class="job-type urgent" style="margin-left: 0.5rem;">URGENT</span>' : ''}
+                    </div>
+                    <button class="save-btn ${isSaved ? 'saved' : ''}" onclick="toggleSave(${job.id})">
+                        <i class="fas fa-bookmark"></i>
+                    </button>
+                </div>
+                <div class="card-body">
+                    <h3 class="job-title">${job.title}</h3>
+                    <div class="company">
+                        <i class="fas fa-building"></i> ${job.company}
+                    </div>
+                    <div class="job-tags">
+                        ${job.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="salary">
+                        <i class="fas fa-money-bill-wave"></i> ${job.salary}
+                    </div>
+                    <p class="description">${job.description}</p>
+                    <div class="card-footer">
+                        <button class="apply-btn" onclick="showDetails(${job.id})">
+                            View Details & Apply
+                        </button>
+                        <button class="share-btn" onclick="shareJob(${job.id})">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            return div;
+        }
+
+        function filterJobs(filter) {
+            currentFilter = filter;
+            
+            // Update buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase().includes(filter) || 
+                    (filter === 'all' && btn.textContent.includes('All'))) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            renderJobs();
+        }
+
+        function searchJobs() {
+            const term = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('jobsGrid');
+            grid.innerHTML = '';
+            
+            const filtered = jobs.filter(job => 
+                job.title.toLowerCase().includes(term) ||
+                job.description.toLowerCase().includes(term) ||
+                job.company.toLowerCase().includes(term)
+            );
+            
+            filtered.forEach(job => {
+                grid.appendChild(createJobCard(job));
+            });
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-secondary);"><h3>No jobs found</h3><p>Try searching for "virtual assistant", "customer care", or "data entry"</p></div>';
+            }
+        }
+
+        function showDetails(id) {
+            const job = jobs.find(j => j.id === id);
+            if (!job) return;
+
+            document.getElementById('modalType').textContent = job.type === 'remote' ? 'Remote Job' : 'Relocation Opportunity';
+            document.getElementById('modalTitle').textContent = job.title;
+            document.getElementById('modalCompany').textContent = job.company;
+            document.getElementById('modalSalary').textContent = job.salary;
+            document.getElementById('modalLocation').textContent = job.location;
+            document.getElementById('modalExp').textContent = job.exp;
+            document.getElementById('modalDesc').textContent = job.description;
+            document.getElementById('modalNote').textContent = job.note;
+
+            const reqsList = document.getElementById('modalReqs');
+            reqsList.innerHTML = job.requirements.map(req => `<li>${req}</li>`).join('');
+
+            document.getElementById('detailModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('detailModal').classList.remove('active');
+        }
+
+        function applyNow() {
+            showToast('Opening application form...');
+            setTimeout(() => {
+                window.open('https://forms.google.com', '_blank');
+            }, 1000);
+        }
+
+        function toggleSave(id) {
+            if (savedJobs.has(id)) {
+                savedJobs.delete(id);
+                showToast('Removed from saved');
+            } else {
+                savedJobs.add(id);
+                showToast('Saved! We will notify you of updates');
+            }
+            renderJobs();
+        }
+
+        function shareJob(id) {
+            const job = jobs.find(j => j.id === id);
+            const text = `Check out this job: ${job.title} - ${job.salary}`;
+            
+            if (navigator.share) {
+                navigator.share({
+                    title: job.title,
+                    text: text,
+                    url: window.location.href
+                });
+            } else {
+                // WhatsApp share
+                const url = `https://wa.me/?text=${encodeURIComponent(text + ' ' + window.location.href)}`;
+                window.open(url, '_blank');
+            }
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.textContent = msg;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Close modal on outside click
+        document.getElementById('detailModal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) closeModal();
+        });
+    </script>
+</body>
+</html>
