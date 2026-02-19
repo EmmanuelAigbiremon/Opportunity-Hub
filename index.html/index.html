@@ -29,7 +29,6 @@
             min-height: 100vh;
         }
 
-        /* Header */
         .navbar {
             background: rgba(15, 23, 42, 0.95);
             backdrop-filter: blur(20px);
@@ -86,7 +85,6 @@
             gap: 0.5rem;
         }
 
-        /* Hero */
         .hero {
             margin-top: 80px;
             padding: 4rem 2rem;
@@ -139,7 +137,6 @@
             cursor: pointer;
         }
 
-        /* Filters */
         .filters {
             display: flex;
             gap: 1rem;
@@ -166,7 +163,6 @@
             border-color: var(--success);
         }
 
-        /* Stats */
         .stats {
             display: flex;
             justify-content: center;
@@ -190,7 +186,6 @@
             font-size: 0.9rem;
         }
 
-        /* Main Content */
         .container {
             max-width: 1400px;
             margin: 0 auto;
@@ -209,7 +204,6 @@
             color: var(--success);
         }
 
-        /* Opportunity Cards */
         .opportunities-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
@@ -345,7 +339,6 @@
             cursor: pointer;
         }
 
-        /* Featured Banner */
         .featured-banner {
             background: linear-gradient(135deg, rgba(5, 150, 105, 0.2) 0%, rgba(14, 165, 233, 0.2) 100%);
             border: 2px solid var(--success);
@@ -378,7 +371,6 @@
             cursor: pointer;
         }
 
-        /* Categories */
         .categories {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
@@ -423,7 +415,23 @@
             font-size: 0.9rem;
         }
 
-        /* Modal */
+        .ad-container {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: var(--bg-card);
+            border-radius: 15px;
+            border: 1px solid var(--bg-light);
+        }
+
+        .ad-label {
+            font-size: 0.7rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
         .modal {
             display: none;
             position: fixed;
@@ -527,7 +535,6 @@
             margin-top: 1rem;
         }
 
-        /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
             bottom: 2rem;
@@ -552,7 +559,6 @@
             transform: scale(1.1);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .hero h1 { font-size: 2rem; }
             .opportunities-grid { grid-template-columns: 1fr; }
@@ -561,7 +567,6 @@
             .nav-links { display: none; }
         }
 
-        /* Toast */
         .toast {
             position: fixed;
             bottom: 100px;
@@ -597,7 +602,7 @@
                 <li><a href="#scholarships">Scholarships</a></li>
                 <li><a href="#visa">Visa Help</a></li>
             </ul>
-            <a href="https://wa.me/+2348162840151" class="whatsapp-btn" target="_blank">
+            <a href="https://wa.me/2348162840151" class="whatsapp-btn" target="_blank">
                 <i class="fab fa-whatsapp"></i> Get Help
             </a>
         </div>
@@ -644,6 +649,18 @@
         </div>
     </section>
 
+    <!-- A-Ads Advertisement -->
+    <div class="container">
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- BEGIN AADS AD UNIT 2428059 -->
+            <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                <iframe data-aa='2428059' src='//acceptable.a-ads.com/2428059/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+            </div>
+            <!-- END AADS AD UNIT 2428059 -->
+        </div>
+    </div>
+
     <!-- Main Content -->
     <div class="container">
         
@@ -680,6 +697,16 @@
             </div>
         </div>
 
+        <!-- A-Ads Advertisement -->
+        <div class="ad-container">
+            <div class="ad-label">Sponsored</div>
+            <!-- BEGIN AADS AD UNIT 2428059 -->
+            <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                <iframe data-aa='2428059' src='//acceptable.a-ads.com/2428059/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+            </div>
+            <!-- END AADS AD UNIT 2428059 -->
+        </div>
+
         <!-- Jobs Section -->
         <h2 class="section-title">
             <i class="fas fa-briefcase"></i>
@@ -688,6 +715,16 @@
 
         <div class="opportunities-grid" id="jobsGrid">
             <!-- Jobs injected by JS -->
+        </div>
+
+        <!-- A-Ads Advertisement -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- BEGIN AADS AD UNIT 2428059 -->
+            <div id="frame" style="width: 100%; margin: auto; position: relative; z-index: 99998;">
+                <iframe data-aa='2428059' src='//acceptable.a-ads.com/2428059/?size=Adaptive' style='border:0; padding:0; width:70%; height:auto; overflow:hidden; display: block; margin: auto'></iframe>
+            </div>
+            <!-- END AADS AD UNIT 2428059 -->
         </div>
     </div>
 
@@ -750,7 +787,7 @@
     </div>
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/+2348162840151" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+    <a href="https://wa.me/2348162840151" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -758,7 +795,6 @@
     <div class="toast" id="toast">Application started!</div>
 
     <script>
-        // Realistic Jobs for Africans
         const jobs = [
             {
                 id: 1,
@@ -1005,7 +1041,6 @@
         let currentFilter = 'all';
         let savedJobs = new Set();
 
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             renderJobs();
         });
@@ -1076,7 +1111,6 @@
         function filterJobs(filter) {
             currentFilter = filter;
             
-            // Update buttons
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.textContent.toLowerCase().includes(filter) || 
@@ -1160,7 +1194,6 @@
                     url: window.location.href
                 });
             } else {
-                // WhatsApp share
                 const url = `https://wa.me/?text=${encodeURIComponent(text + ' ' + window.location.href)}`;
                 window.open(url, '_blank');
             }
@@ -1173,11 +1206,9 @@
             setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // Close modal on outside click
         document.getElementById('detailModal').addEventListener('click', (e) => {
             if (e.target === e.currentTarget) closeModal();
         });
     </script>
 </body>
-
 </html>
